@@ -10,8 +10,9 @@ namespace Poligoane_Curs6
 {
     public class Polygon
     {
-        PointF[] points;
+        public PointF[] points;
         public static Random rnd = new Random();
+        public int lenght { get { return points.Length; } }
         public Polygon(int n, int maxX,int maxY)
         {
             points = new PointF[n];
@@ -19,6 +20,16 @@ namespace Poligoane_Curs6
             {
                 points[i] = new PointF(rnd.Next(maxX), rnd.Next(maxY));
             }
+        }
+        public Matrix PolygonToMatrix()
+        {
+            Matrix toReturn = new Matrix(lenght);
+            for (int i = 0; i < lenght; i++)
+            {
+                toReturn.a[0, i] = (int)points[i].X;
+                toReturn.a[1, i] = (int)points[i].Y;
+            }
+            return toReturn;
         }
         public Polygon(string fileName)
         { 
@@ -35,6 +46,10 @@ namespace Poligoane_Curs6
             {
                 points[i] = new PointF(float.Parse(lines[i].Split(' ')[0]), float.Parse(lines[i].Split(' ')[1]));
             }
+        }
+        public Polygon(int a)
+        {
+            points = new PointF[a];
         }
         public float Perimeter()
         {

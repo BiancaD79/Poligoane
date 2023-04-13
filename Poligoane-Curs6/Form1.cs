@@ -62,5 +62,31 @@ namespace Poligoane_Curs6
             g.g.DrawEllipse(Pens.Red, G.X - 2,G.Y - 2, 5, 5);
             g.Refresh();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Polygon X = g.PolygonTranslate(test[0], new Point(200,100));
+            X.Draw(g.g);
+            g.Refresh();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Polygon X = g.PolygonScale(test[0],2,1);
+            X.Draw(g.g);
+            g.Refresh();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            for (float r = 0; r < (float)Math.PI*2; r += 0.1f)
+            {
+                Polygon X = g.PolygonRotate(test[0], r, test[0].G());
+                X.Draw(g.g);
+                Polygon Y = g.PolygonRotate(test[0], r, new PointF(300, 300));
+                Y.Draw(g.g);
+            }
+            g.Refresh();
+        }
     }
 }
